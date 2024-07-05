@@ -4,32 +4,32 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Dashboard",
-    description: "Admin dashboard",
+  title: "Dashboard",
+  description: "Admin dashboard",
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={inter.className}>
-                <Navbar />
-                <div className="flex">
-                    <div className="hidden md:block h-[100vh] w-[300px]">
-                        <Sidebar />
-                    </div>
-                    <div className="p-5 w-full md:max-w-[1140px]">
-                        {children}
-                    </div>
-                </div>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <Navbar />
+        <div className="flex">
+          <div className="hidden h-[100vh] w-[300px] md:block">
+            <Sidebar />
+          </div>
+          <div className="w-full p-5 md:max-w-[1140px]">{children}</div>
+        </div>
+        <Toaster />
+      </body>
+    </html>
+  );
 }

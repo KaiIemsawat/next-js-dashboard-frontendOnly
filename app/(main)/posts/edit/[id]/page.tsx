@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
+import { useToast } from "@/components/ui/use-toast";
 import posts from "@/data/posts";
 
 const formSchema = z.object({
@@ -41,6 +42,7 @@ interface PostEditPageProps {
 
 const page = ({ params }: PostEditPageProps) => {
   const post = posts.find((post) => post.id === params.id);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,7 +55,10 @@ const page = ({ params }: PostEditPageProps) => {
   });
 
   const handleSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    toast({
+      title: "Post's been updated successfully",
+      description: `Updated by ${post?.author} on ${post?.date}`,
+    });
   };
 
   return (
