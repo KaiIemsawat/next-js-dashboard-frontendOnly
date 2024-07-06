@@ -40,7 +40,7 @@ interface PostEditPageProps {
   };
 }
 
-const page = ({ params }: PostEditPageProps) => {
+const PostEditPage = ({ params }: PostEditPageProps) => {
   const post = posts.find((post) => post.id === params.id);
   const { toast } = useToast();
 
@@ -155,4 +155,4 @@ const page = ({ params }: PostEditPageProps) => {
     </>
   );
 };
-export default page;
+export default PostEditPage;
